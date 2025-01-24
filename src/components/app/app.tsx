@@ -22,9 +22,7 @@ function App({ offers }: AppProps): JSX.Element {
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path={AppRoute.Favorites}
             element={
-              <PrivateRoute
-                authStatus={AuthStatus.Auth}
-              >
+              <PrivateRoute authStatus={AuthStatus.Auth}>
                 <FavoritesPage offers={offers} />
               </PrivateRoute>
             }

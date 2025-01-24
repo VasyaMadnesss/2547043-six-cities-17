@@ -1,6 +1,7 @@
 import { AppRoute } from '../../const';
 import { Offer } from '../../mocks/offers';
 import { Link } from 'react-router-dom';
+import { capitalizeFirstLetter, getRelativeRating } from '../../utils';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -9,10 +10,9 @@ type PlaceCardProps = {
 }
 
 function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): JSX.Element {
-  const widthRating = `${offer.rating * 20}%`;
-  const capitalizedType = `${offer.type[0].toUpperCase() + offer.type.slice(1)}`;
   let imageWidth;
   let imageHeight;
+
   switch (pageLocation) {
     case AppRoute.Root:
       imageHeight = 200;
@@ -23,6 +23,7 @@ function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): J
       imageWidth = 150;
       break;
   }
+
   return (
     <article className={`${pageLocation === AppRoute.Root && 'cities' || pageLocation === AppRoute.Favorites && 'favorites'}__card place-card`} onMouseEnter={() => {
       if(pageLocation === AppRoute.Root) {
@@ -64,7 +65,7 @@ function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): J
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">s
-            <span style={{ width: widthRating }} />
+            <span style={{ width: getRelativeRating(offer.rating) }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -73,7 +74,7 @@ function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): J
             {offer.title}
           </Link>
         </h2>
-        <p className="place-card__type">{capitalizedType}</p>
+        <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
     </article>
   );

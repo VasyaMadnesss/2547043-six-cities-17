@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/header/header';
-import PlaceCards from '../components/place-cards/place-cards';
 import { AppRoute } from '../const';
 import { Offers } from '../mocks/offers';
+import Header from '../components/header/header';
+import FavoritesListing from '../components/favorites-listing/favorites-listing';
 
 type FavoritesPageProps = {
   offers: Offers;
@@ -16,32 +16,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCards offers={offers} pageLocation={AppRoute.Favorites} />
-                </div>
-              </li>
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCards offers={offers} pageLocation={AppRoute.Favorites} />
-                </div>
-              </li>
-            </ul>
+            <FavoritesListing offers={offers} />
           </section>
         </div>
       </main>

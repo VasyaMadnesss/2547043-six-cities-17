@@ -1,17 +1,15 @@
-import { Offers } from '../../mocks/offers';
-import { separateFavoriteOffersByCity } from '../../utils';
 import { AppRoute } from '../../const';
-import PlaceCards from '../place-cards/place-cards';
+import PlaceOffers from '../place-offers/place-offers';
+import { FavoriteOffersByCity } from '../../utils';
 
-type FavoritesListingProps = {
-  offers: Offers;
+type FavoriteOffersListProps = {
+  favoriteOffersByCity: FavoriteOffersByCity;
 }
 
-function FavoritesListing({ offers }: FavoritesListingProps): JSX.Element {
-  const separatedOffers = separateFavoriteOffersByCity(offers);
+function FavoriteOffersList({ favoriteOffersByCity }: FavoriteOffersListProps): JSX.Element {
   return (
     <ul className="favorites__list">
-      {Object.keys(separatedOffers).map((cityName) => (
+      {Object.keys(favoriteOffersByCity).map((cityName) => (
         <li key={cityName} className="favorites__locations-items">
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
@@ -21,7 +19,7 @@ function FavoritesListing({ offers }: FavoritesListingProps): JSX.Element {
             </div>
           </div>
           <div className="favorites__places">
-            <PlaceCards offers={separatedOffers[cityName]} pageLocation={AppRoute.Favorites} />
+            <PlaceOffers offers={favoriteOffersByCity[cityName]} pageLocation={AppRoute.Favorites} />
           </div>
         </li>
       ))}
@@ -29,4 +27,4 @@ function FavoritesListing({ offers }: FavoritesListingProps): JSX.Element {
   );
 }
 
-export default FavoritesListing;
+export default FavoriteOffersList;

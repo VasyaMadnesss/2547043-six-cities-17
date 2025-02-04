@@ -5,11 +5,11 @@ import { capitalizeFirstLetter, getRelativeRating } from '../../utils';
 
 type PlaceCardProps = {
   offer: Offer;
-  updateActiveCard: () => void;
+  updateActiveOffer: () => void;
   pageLocation: AppRoute;
 }
 
-function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer, updateActiveOffer, pageLocation }: PlaceCardProps): JSX.Element {
   let imageWidth;
   let imageHeight;
 
@@ -27,7 +27,7 @@ function PlaceCard({ offer, updateActiveCard, pageLocation }: PlaceCardProps): J
   return (
     <article className={`${pageLocation === AppRoute.Root && 'cities' || pageLocation === AppRoute.Favorites && 'favorites'}__card place-card`} onMouseEnter={() => {
       if(pageLocation === AppRoute.Root) {
-        updateActiveCard();
+        updateActiveOffer();
       }
     }}
     >

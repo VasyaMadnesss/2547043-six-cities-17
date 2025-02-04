@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../const';
+import { FavoriteOffersByCity, separateFavoriteOffersByCity } from '../utils';
 import { Offers } from '../mocks/offers';
 import Header from '../components/header/header';
-import FavoritesListing from '../components/favorites-listing/favorites-listing';
+import FavoriteOffersList from '../components/favorite-offers-list/favorite-offers-list';
 
 type FavoritesPageProps = {
   offers: Offers;
 }
 
 function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
+  const favoriteOffers: FavoriteOffersByCity | null = separateFavoriteOffersByCity(offers);
+  if(favoriteOffers === null) {
+    return (<div>WIP</div>); // отображение empty-favorites-page.
+  }
   return (
     <div className="page">
       <Header />
@@ -16,7 +21,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesListing offers={offers} />
+            <FavoriteOffersList favoriteOffersByCity={favoriteOffers} />
           </section>
         </div>
       </main>

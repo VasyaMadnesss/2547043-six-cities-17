@@ -1,5 +1,5 @@
 import Header from '../components/header/header';
-import PlaceCards from '../components/place-cards/place-cards';
+import PlaceOffers from '../components/place-offers/place-offers';
 import { AppRoute } from '../const';
 
 import { Offers } from '../mocks/offers';
@@ -81,7 +81,7 @@ function MainPage({offers}: MainPageProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <PlaceCards pageLocation={AppRoute.Root} offers={offers}/>
+              <PlaceOffers pageLocation={AppRoute.Root} offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />
